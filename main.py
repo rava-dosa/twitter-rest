@@ -6,7 +6,7 @@ import time
 import model
 import helper
 import streaming
-
+import nosql
 
 from flask import Flask
 from flask import json
@@ -39,7 +39,8 @@ def hello_world():
 		else:
 			# l1=search.twit(l2,10)
 			l1=streaming.twit(l2,int(p2))
-		ret=model.insert(l1)
+		# ret=model.insert(l1)
+		ret=nosql.insert(l1)
 	response = app.response_class(
 		response=json.dumps(ret),
 		status=200,
@@ -101,9 +102,11 @@ def summary():
 
 	if p1 is not None:
 		if p3 is None or int(p3)==0:
-			lis=model.searchtweet(lis,p1)
+			# lis=model.searchtweet(lis,p1)
+			lis=nosql.searchtweet(lis,p1)
 		else:
-			lis=model.searchuser(lis,p1)
+			# lis=model.searchuser(lis,p1)
+			lis=nosql.searchuser(lis,p1)
 		# sort by 
 		if p11 is not None:
 			if int(p11)==0:

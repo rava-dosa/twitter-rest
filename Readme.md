@@ -4,7 +4,7 @@
 1. Python 3.6.6
 2. Flask 1.0.2
 3. Tweepy 
-
+4. Mongodb, First install mongodb from https://www.admintome.com/blog/install-mongodb-ubuntu-18-04/, then install pymongo using or you will get error.
 ### How to run
 0. Add secret key and all that in streaming.py
 1. python main.py
