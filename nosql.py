@@ -43,8 +43,12 @@ def searchuser(l,keyword):
 	myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 	mydb = myclient["database"]
 	mycol = mydb["TWITTER"]
-	s1="/{}/".format(keyword)
-	mydoc = mycol.find({"USER": s1})
+	s1="{}".format(keyword)
+	dic={}
+	dic["$regex"]=s1
+	dic["$options"]="i"
+	# s1="/{}/".format(keyword)
+	mydoc = mycol.find({"USER": dic})
 	for x in mydoc:
 		l1=list(x.values())
 		l.append(l1)
