@@ -51,5 +51,5 @@ def searchuser(l,keyword):
 	mydoc = mycol.find({"USER": dic})
 	for x in mydoc:
 		l1=list(x.values())
-		l.append(l1)
+		l.append(l1[1:])
 	return l	
