@@ -5,7 +5,7 @@ import pdb
 import time
 import model
 import helper
-
+import streaming
 
 from flask import Flask
 from flask import json
@@ -32,9 +32,11 @@ def hello_world():
 	for x in p3:
 		l2=[x]
 		if p2 is not None:
-			l1=search.twit(l2,int(p2))
+			# l1=search.twit(l2,int(p2))
+			l1=streaming.twit(l2,int(p2))
 		else:
-			l1=search.twit(l2,10)
+			# l1=search.twit(l2,10)
+			l1=streaming.twit(l2,10)
 		ret=model.insert(l1)
 	response = app.response_class(
 		response=json.dumps(ret),

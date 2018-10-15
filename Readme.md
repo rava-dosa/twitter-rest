@@ -3,7 +3,7 @@
 ### Dependencies:-
 1. Python 3.6.6
 2. Flask 1.0.2
-3. TwitterSearch 1.0.2 
+3. Tweepy 
 
 ### How to run
 0. Add secret key and all that in search.py
@@ -11,6 +11,7 @@
 2. Click on links to see results.
 
 ### Known BUGS
+0. If it doesn't get even one result it will get in infinite loop.
 1. I know that ID should be primary key but now due to time constraint I have removed that get results properly even though they are repeated and duplicate.
 2. I could have cached **lis** variable for pagination request but again due to time constraint, I have not done that.
 
@@ -19,8 +20,8 @@
 #### To trigger a twitter search/stream for recent high traffic events.(eg: modi, AbkiBarModiSarkar, ModiForPM etc were high traffic terms during elections back in 2014)
 How to use it ?
 
-1. http://127.0.0.1:5000/?keyword=["modi","AbkiBarModiSarkar","ModiForPM"]. This will iterate over all keywords and save top 10 results.
-2. http://127.0.0.1:5000/?keyword=["modi","AbkiBarModiSarkar"]&number=20. This will iterate over all keywords and save top 20 result if it's there.
+1. http://127.0.0.1:5000/?keyword=["modi","Sarkar","ModiForPM"]. This will iterate over all keywords and save top 10 results.
+2. http://127.0.0.1:5000/?keyword=["modi","Sarkar"]&number=10. This will iterate over all keywords and save top 20 result if it's there.
 
 ### API 2
 
