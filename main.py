@@ -7,6 +7,7 @@ import model
 import helper
 import streaming
 
+
 from flask import Flask
 from flask import json
 from flask import request
@@ -34,9 +35,10 @@ def hello_world():
 		if p2 is not None:
 			# l1=search.twit(l2,int(p2))
 			l1=streaming.twit(l2,int(p2))
+
 		else:
 			# l1=search.twit(l2,10)
-			l1=streaming.twit(l2,10)
+			l1=streaming.twit(l2,int(p2))
 		ret=model.insert(l1)
 	response = app.response_class(
 		response=json.dumps(ret),
@@ -57,17 +59,34 @@ def summary():
 	p3=None
 	p4=None
 	p5=None
+	p6=None
 	try:
 		p1 = request.args.get('keyword')
+	except:
+		pass
+	try:
 		p11 = request.args.get('sortby')
+	except:
+		pass
 		#p11 = 0 sort by date time
 		#p11 = 1 sort by tweet text.
+	try:
+		# pdb.set_trace()
 		p2 = request.args.get('pagination')
+	except:
+		pass
+	try:	
 		p22 = request.args.get('capacity')
+	except:
+		pass
+	try:	
 		p3 = request.args.get('flag')       
+	except:
+		pass	
 		# flag = 0 if search keyword is for tweet
 		# flag = 1 if search keyword is for username 
 		# default tweet text
+	try:
 		p4 = request.args.get('filter')
 		if p4 is not None:
 			p5 = literal_eval(p4)
@@ -75,19 +94,17 @@ def summary():
 			pass
 	except:
 		pass
+	try:
+		p6 = request.args.get('file')
+	except:
+		pass
+
 	if p1 is not None:
 		if p3 is None or int(p3)==0:
-			s1="SELECT * FROM TWITTER WHERE TWEET LIKE '%{keyword}%' ".format(keyword=p1)
-			print(s1)
-			for row in conn.execute(s1):
-				# print(row)
-				lis.append(row)
+			lis=model.searchtweet(lis,p1)
 		else:
-			s1="SELECT * FROM TWITTER WHERE USER LIKE '%{keyword}%' ".format(keyword=p1)
-			print(s1)
-			for row in conn.execute(s1):
-				# print(row)
-				lis.append(row)
+			lis=model.searchuser(lis,p1)
+		# sort by 
 		if p11 is not None:
 			if int(p11)==0:
 				lis=sorted(lis, key=itemgetter(1))
@@ -95,7 +112,9 @@ def summary():
 				lis=sorted(lis, key=itemgetter(7))
 		else:
 			pass
+		# all these(112-144) variables help in producing filter over the queried result
 		if p4 is not None:
+			var1,var2 = None,None
 			for x in p5:
 				try:
 					var1 = x["var1"]
@@ -106,27 +125,31 @@ def summary():
 				except:
 					pass
 				# pdb.set_trace()
-				if "lt" in x:
-					lis=helper.funcoo(lis,x["lt"],var1,0)
-				elif "gt" in x:
-					lis=helper.funcoo(lis,x["gt"],var1,1)
-				elif "et" in x:
-					lis=helper.funcoo(lis,x["et"],var1,2)
-				else:
-					pass
+				if var1 is not None:
+					if "lt" in x:
+						lis=helper.funcoo(lis,x["lt"],var1,0)
+					elif "gt" in x:
+						lis=helper.funcoo(lis,x["gt"],var1,1)
+					elif "et" in x:
+						lis=helper.funcoo(lis,x["et"],var1,2)
+					else:
+						pass
 
-				if "sw" in x:
-					lis=helper.funcoo1(lis,x["sw"],var2,0)
-				elif "ew" in x:
-					lis=helper.funcoo1(lis,x["ew"],var2,1)
-				elif "contains" in x:
-					lis=helper.funcoo1(lis,x["contains"],var2,2)
-				elif "exact" in x:
-					lis=helper.funcoo1(lis,x["exact"],var2,3)
-				else:
-					pass
+				if var2 is not None:
+					if "sw" in x:
+						lis=helper.funcoo1(lis,x["sw"],var2,0)
+					elif "ew" in x:
+						lis=helper.funcoo1(lis,x["ew"],var2,1)
+					elif "contains" in x:
+						lis=helper.funcoo1(lis,x["contains"],var2,2)
+					elif "exact" in x:
+						lis=helper.funcoo1(lis,x["exact"],var2,3)
+					else:
+						pass
+	# pagination 
 	if p2 is not None:
 		if p22 is not None:
+			# pdb.set_trace()
 			pag=int(p2)
 			cap=int(p22)
 			currcap=len(lis)-pag*cap
@@ -137,6 +160,19 @@ def summary():
 					lis=lis[pag*cap:len(lis)]
 			else:
 				return("Bad request")
+		else:
+			cap=5
+			pag=int(p2)
+			currcap=len(lis)-pag*cap
+			if pag*cap < len(lis):
+				if currcap > cap:
+					lis=lis[pag*cap:pag*cap+cap]
+				else:
+					lis=lis[pag*cap:len(lis)]
+			else:
+				return("Bad request")
+	
+	# response
 	response = app.response_class(
 		response=json.dumps(lis),
 		status=200,
