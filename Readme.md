@@ -14,6 +14,7 @@
 0. If it doesn't get even one result it will get in infinite loop.
 1. I know that ID should be primary key but now due to time constraint I have removed that get results properly even though they are repeated and duplicate.
 2. I could have cached **lis** variable for pagination request but again due to time constraint, I have not done that.
+3. After 120s twitter streaming object will return false.
 
 ### API 1
 
