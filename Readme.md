@@ -11,7 +11,8 @@
 2. Click on links to see results.
 
 ### Known BUGS
-I know that ID should be primary key but now due to time constraint I have removed that get results properly even though they are repeated and duplicate.
+1. I know that ID should be primary key but now due to time constraint I have removed that get results properly even though they are repeated and duplicate.
+2. I could have cached **lis** variable for pagination request but again due to time constraint, I have not done that.
 
 ### API 1
 
