@@ -6,9 +6,12 @@
 3. TwitterSearch 1.0.2 
 
 ### How to run
-0. Add secret key and al that in search.py
+0. Add secret key and all that in search.py
 1. python main.py
 2. Click on links to see results.
+
+### Known BUGS
+I know that ID should be primary key but now due to time constraint I have removed that get results properly even though they are repeated and duplicate.
 
 ### API 1
 
@@ -37,7 +40,7 @@ How to use it ?
 	1. http://127.0.0.1:5000/search?keyword=modi&pagination=2&capacity=4
 7. Filter for date less than a particular date.
 	1. http://127.0.0.1:5000/search?keyword=Modi&flag=0&sortby=0&filter=[{'lt':'2018-10-15','var1':'DATE'}]
-8. Filter for date which is in range between particular date. There are total three option **lt** for less than **gt** for greater than and **et** for equal to. Options for var1 are Followers, Favourites(Total favourite til date on all tweet), RETWEET, FAVOURITE(on just this tweet) and DATE.
+8. Filter for date which is in range between particular date. There are total three option **lt** for less than **gt** for greater than and **et** for equal to. Options for var1 are **FOLLOWERS**, **FAVOURITES**(Total favourite till date on all tweet), **RETWEET**, **FAVOURITE**(on just this tweet) and **DATE**.
 	1. http://127.0.0.1:5000/search?keyword=Modi&flag=0&sortby=0&filter=[{'lt':'2018-10-15','var1':'DATE'},{'gt':'2018-10-05','var1':'DATE'}]
 9. Filter for **sw** (Starts with),**ew** (ends with), **contains**(substring search), **exact** (exact match in case of string) . Options for var2 are **ID** (for url search https://twitter.com/i/web/status/ + id) **TWEET** , **USER** for user-id, **NAME** for original name.
 	1. http://127.0.0.1:5000/search?keyword=Modi&flag=0&sortby=0&filter=[{'et':'2018-10-15','var1':'DATE'},{'contains':'Modi','var2':'TWEET'}]
