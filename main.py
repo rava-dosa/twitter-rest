@@ -7,6 +7,7 @@ import model
 import helper
 import streaming
 import nosql
+import csv
 
 from flask import Flask
 from flask import json
@@ -176,11 +177,21 @@ def summary():
 				return("Bad request")
 	
 	# response
-	response = app.response_class(
-		response=json.dumps(lis),
-		status=200,
-		mimetype='application/json'
-	)
-	return response
+	if p6 is None:
+		# pdb.set_trace()
+		response = app.response_class(
+			response=json.dumps(lis),
+			status=200,
+			mimetype='application/json'
+		)
+		return response
+	else:
+		with open('data.csv', 'w') as csvfile:
+			csvData=[["ID","TWEET","USER","NAME","FOLLOWERS","FAVOURITES","LANGUAGE","DATETIME","RETWEET","FAVOURITE"]]
+			# spamreader = csv.reader(csvfile, delimiter=',')
+			writer = csv.writer(csvfile)
+			writer.writerows(csvData)
+			writer.writerows(lis)
+		return send_file("data.csv",mimetype="text/csv")
 
 app.run(debug=True,threaded=True)

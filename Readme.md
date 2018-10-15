@@ -48,3 +48,4 @@ How to use it ?
 9. Filter for **sw** (Starts with),**ew** (ends with), **contains**(substring search), **exact** (exact match in case of string) . Options for var2 are **ID** (for url search https://twitter.com/i/web/status/ + id) **TWEET** , **USER** for user-id, **NAME** for original name.
 	1. http://127.0.0.1:5000/search?keyword=Modi&flag=0&sortby=0&filter=[{'et':'2018-10-15','var1':'DATE'},{'contains':'Modi','var2':'TWEET'}]
 10.  You can add as many filter as you want in form of dict. And filter is list of dict. Even though it's not good from security point of view but it decrease no of variables. 
+11. To get your data as csv http://127.0.0.1:5000/search?keyword=Modi&flag=0&sortby=0&filter=[{'et':'2018-10-15','var1':'DATE'},{'contains':'Modi','var2':'TWEET'}]&file=1
