@@ -6,7 +6,7 @@
 3. Tweepy 
 
 ### How to run
-0. Add secret key and all that in search.py
+0. Add secret key and all that in streaming.py
 1. python main.py
 2. Click on links to see results.
 
