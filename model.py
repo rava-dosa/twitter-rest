@@ -23,3 +23,22 @@ def insert(l1):
 	conn.close()
 	print(s1)
 	return "success"
+
+def searchtweet(lis,p1):
+	conn = sqlite3.connect('test.db')
+	s1="SELECT * FROM TWITTER WHERE TWEET LIKE '%{keyword}%' ".format(keyword=p1)
+	# print(s1)
+	for row in conn.execute(s1):
+		# print(row)
+		lis.append(row)
+	return lis
+
+def searchuser(lis,p1):
+	conn = sqlite3.connect('test.db')
+	s1="SELECT * FROM TWITTER WHERE USER LIKE '%{keyword}%' ".format(keyword=p1)
+	# print(s1)
+	for row in conn.execute(s1):
+		# print(row)
+		lis.append(row)
+	return lis
+
