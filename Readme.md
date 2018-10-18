@@ -1,9 +1,9 @@
 ## Twitter Search API 
 
 ### Description of branches:
-bp-1. Added twitter streaming
-bp-2. Added PyMongo.
-bp-3. Added getting results in .csv.
+bp-1. Added twitter streaming  
+bp-2. Added PyMongo.  
+bp-3. Added getting results in .csv.  
 
 ### Dependencies:-
 1. Python 3.6.6
