@@ -1,5 +1,10 @@
 ## Twitter Search API 
 
+### Description of branches:
+1. Added twitter streaming
+2. Added PyMongo.
+3. Added getting results in .csv.
+
 ### Dependencies:-
 1. Python 3.6.6
 2. Flask 1.0.2
