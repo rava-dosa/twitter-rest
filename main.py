@@ -51,7 +51,7 @@ def hello_world():
 
 @app.route('/search')
 def summary():
-	pdb.set_trace()
+	# pdb.set_trace()
 	keyforcache=helper.urltokey(request.url)
 	time=5*60
 	lis=None
