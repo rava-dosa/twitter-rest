@@ -266,6 +266,7 @@ def funcoo1(lis,val,var2,flag):
 	return lis1
 
 def urltokey(str1):
+	# I know that key can be better. Like we can sequentialize filter options to create a key. 
 	try:
 		str1=re.sub('&pagination=\d+', '', str1)
 	except:
