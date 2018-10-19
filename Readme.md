@@ -4,7 +4,7 @@
 bp-1. Added twitter streaming  
 bp-2. Added PyMongo.  
 bp-3. Added getting results in .csv.  
-bp-4. Added basic cache support.  
+bp-4. Added basic cache support.(2 min but you can change) 
 
 ### Dependencies:-
 1. Python 3.6.6

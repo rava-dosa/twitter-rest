@@ -53,7 +53,7 @@ def hello_world():
 def summary():
 	# pdb.set_trace()
 	keyforcache=helper.urltokey(request.url)
-	time=5*60
+	time=2*60
 	lis=None
 	lis=helper.cach(lis,keyforcache,request,cache,time)
 	lis=helper.pagination(lis,request)
